@@ -5,7 +5,7 @@
 ### Pipelines
 Recommended way to set up efficient data pipelines for Tensorflow.
 
-* Example 1: Create pipeline for jpeg images
+Example 1: Create pipeline for jpeg images
 ```python
 def parse_function(file_path, label):
     image_string = tf.read_file(file_path)
@@ -26,13 +26,13 @@ dataset = dataset.batch(32)
 dataset = dataset.prefetch(tf.data.experimental.AUTOTUNE)
 ```
 
-    * without dataset.cache(), each image file would be read again in each epoch (after each repeat()) (is fine for local training on CPU but may not be sufficient for GPU training, and is totally inappropriate for any sort of distributed training.)
+* without dataset.cache(), each image file would be read again in each epoch (after each repeat()) (is fine for local training on CPU but may not be sufficient for GPU training, and is totally inappropriate for any sort of distributed training.)
     
-    * from_tensor_slices accepts different types of input arguments 
-        * numpy array or tensor
-        * placeholder (useful when we want to dynamically change the data inside the Dataset)
-        * generator (useful when we have an array of different elements length)
-        * list of filepaths  (useful when big dataset that doesn’t fit in memory)
+* from_tensor_slices accepts different types of input arguments 
+    * numpy array or tensor
+    * placeholder (useful when we want to dynamically change the data inside the Dataset)
+    * generator (useful when we have an array of different elements length)
+    * list of filepaths  (useful when big dataset that doesn’t fit in memory)
 
 ### Iterators
 * In TF <2.0 Iterators such as make_one_shot_iterator(), were used to give us the ability to iterate through the dataset and retrieve the real values of the data. (inside session.run())
