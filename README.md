@@ -168,7 +168,7 @@ model.fit(data, labels, batch_size=32, epochs=5)
 ```
 
 ### Training
-Models defined in either the Sequential, Functional, or Subclassing style can be trained in two ways. You can use either a built-in training routine and loss function (see the first example, where we use model.fit and model.compile), or if you need the added complexity of a custom training loop (for example, if you’d like to write your own gradient clipping code) or loss function, you can do so easily as follows:
+Models defined in either the Sequential, Functional, or Subclassing style can be trained in two ways. You can use either a built-in training routine and loss function (see the first example, where we use model.compile and model.fit), or if you need the added complexity of a custom training loop (for example, if you’d like to write your own gradient clipping code) or loss function, you can do so easily as below. If you choose to use Model Subclassing and write the training loop yourself (using Grading Tape), you also need to define TensorBoard manually. It involves creating the summary files, using tf.summary.create_file_writer(), and specifying which variables you want to visualize.
 
 ```python  
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy()
